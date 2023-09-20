@@ -1,0 +1,45 @@
+ScreenManager
+    id:manager
+    MDScreen:
+        name:"one"
+        MDTextField:
+            id:no
+            mode: "rectangle"
+            size_hint: .2, .1
+            pos_hint:{'center_x':.5, 'center_y':.8}
+            hint_text:"marks:"
+            font_size: dp(25)
+        MDFillRoundFlatButton:
+            id:b
+            text: "Generate"
+            size_hint: .4, .06
+            pos_hint:{'center_x':.5, 'center_y':.7}
+            on_release:
+                app.start(no.text)
+
+
+
+        MDLabel:
+            text: "Qone:" + "  " + app.ans1
+            halign:"center"
+            pos_hint:{'center_x':.5, 'center_y':.6}
+
+        MDLabel:
+            text: "Qtwo:" + "  " + app.ans2
+            halign:"center"
+            pos_hint:{'center_x':.5, 'center_y':.5}
+
+        MDLabel:
+            text: "Qthree:" + "  " + app.ans3
+            halign:"center"
+            pos_hint:{'center_x':.5, 'center_y':.4}
+
+        MDLabel:
+            text: "Qfour" + "  " + app.ans4
+            halign:"center"
+            pos_hint:{'center_x':.5, 'center_y':.3}
+
+        MDLabel:
+            text: "Qfive" + "  " + app.ans5
+            halign:"center"
+            pos_hint:{'center_x':.5, 'center_y':.2}

@@ -1,0 +1,1971 @@
+#:import sm kivy.uix.screenmanager
+ScreenManager:
+    id:manager
+    transition:sm.FadeTransition(duration=.0)
+
+    MDScreen:
+        name:'invoice'
+        FloatLayout:
+            orientation:'vertical'
+            Invoice:
+                pos_hint:{"center_y":.9}
+            RowsCard:
+                pos_hint:{"center_y":.5, "center_x":.5}
+                name:"2020/2023"
+                icon:"cash-multiple"
+
+    MDScreen:
+        name:'log'
+        FloatLayout:
+            orientation:'vertical'
+            MDLabel:
+                bold:True
+                text:'LOGIN TO INVENTORY'
+                halign:"center"
+                font_style:'H6'
+                pos_hint:{'center_x':.5, 'center_y':.85}
+                theme_text_color: "Custom"
+                text_color: 83 / 225, 186 / 225, 115 / 225, 1
+                height: self.texture_size[1]
+                width: self.texture_size[1]
+            NumberField:
+                id:phone_number
+                mode: "rectangle"
+                fill_color: 0, 0, 0, .4
+                size_hint: .8, .1
+                hint_text:"Phone number:"
+                pos_hint:{'center_x':.5, 'center_y':.73}
+                text_color: 0, 0, 0, 1
+                font_size: dp(25)
+            MDTextField:
+                id:log_password
+                mode: "rectangle"
+                fill_color: 0, 0, 0, .4
+                size_hint: .8, .1
+                pos_hint:{'center_x':.5, 'center_y':.58}
+                hint_text:"Password:"
+                password: True
+                text_color: 0, 0, 0, 1
+                font_size: dp(25)
+            MDFillRoundFlatButton:
+                id:register
+                text: "Login"
+                size_hint: .5, .06
+                pos_hint:{'center_x':.5, 'center_y':.42}
+                md_bg_color: 83 / 225, 186 / 225, 115 / 225, 1
+                on_release:
+                    app.register_user(phone_number.text, log_password.text)
+    MDScreen:
+        name:"all_results"
+        FloatLayout:
+            MDChip:
+                text: 'Grade'
+                icon: ''
+                color: 235/255, 115/255, 115/255, 1
+                pos_hint:{"center_x":.13,"center_y":.93}
+                on_release:
+                    shower.text = self.text
+            MDChip:
+                text: 'Remark'
+                icon: ''
+                color: 235/255, 115/255, 115/255, 1
+                pos_hint:{"center_x":.13+.22,"center_y":.93}
+                on_release:
+                    shower.text = self.text
+            MDChip:
+                text: 'SE'
+                icon: ''
+                color: 235/255, 115/255, 115/255, 1
+                pos_hint:{"center_x":.13+.41,"center_y":.93}
+                on_release:
+                    shower.text = self.text
+            MDChip:
+                text: 'CA'
+                icon: ''
+                color: 235/255, 115/255, 115/255, 1
+                pos_hint:{"center_x":.13+.56,"center_y":.93}
+                on_release:
+                    shower.text = self.text
+            MDChip:
+                text: 'Total'
+                icon: ''
+                color: 235/255, 115/255, 115/255, 1
+                pos_hint:{"center_x":.13+.73,"center_y":.93}
+                on_release:
+                    shower.text = self.text
+            MDLabel:
+                id:shower
+                halign:"center"
+                text:"Grade's"
+                pos_hint:{"center_x":.5,"center_y":.85}
+                font_size:"21sp"
+            RecycleView:
+                id:result
+                key_viewclass: 'viewclass'
+                key_size: 'height'
+                pos_hint:{"center_x":.5,"top":.8}
+                RecycleBoxLayout:
+                    id:wall
+                    spacing:dp(10)
+                    padding: dp(10)
+                    default_size: None, dp(55)
+                    default_size_hint: 1, None
+                    size_hint_y: None
+                    height: self.minimum_height
+                    orientation: 'vertical'
+
+
+    MDScreen:
+        name:"test"
+        ScrollView:
+            MDGridLayout:
+                id: box
+                cols: 1
+                adaptive_height: True
+        MDIconButton:
+            icon:"dog"
+            on_release:
+                app.add_ddt()
+    MDScreen:
+        name:"login"
+        FloatLayout:
+            Deco:
+                size: app.size_x/1.2, app.size_y/2.2
+                pos_hint:{"center_x":.5,"center_y":.6}
+            MDLabel:
+                text:"Login sims"
+                halign:"center"
+                theme_text_color: "Custom"
+                font_style:"H4"
+                text_color:36/255, 146/255, 255/255, 1
+                pos_hint:{"center_x":.5,"center_y":.75}
+            MDTextField:
+                id:reg
+                mode: "rectangle"
+                size_hint: .5, .09
+                hint_text:"Registration Number"
+                pos_hint:{'center_x':.53, 'center_y':.65}
+                font_size: dp(25)
+            MDTextField:
+                id:pass_word
+                mode: "rectangle"
+                size_hint: .5, .09
+                hint_text:"Password"
+                pos_hint:{'center_x':.53, 'center_y':.55}
+                font_size: dp(25)
+            MDRaisedButton:
+                id:lgs
+                text: "Login"
+                size_hint: .4, .06
+                pos_hint:{'center_x':.65, 'center_y':.45}
+                on_release:
+                    manager.current="results"
+    MDScreen:
+        name:"login_view"
+        FloatLayout:
+            Deco:
+                size: app.size_x/1.2, app.size_y/2.2
+                pos_hint:{"center_x":.5,"center_y":.6}
+            MDLabel:
+                text:"Login"
+                halign:"center"
+                theme_text_color: "Custom"
+                font_style:"H3"
+                text_color:36/255, 146/255, 255/255, 1
+                pos_hint:{"center_x":.5,"center_y":.75}
+            MDLabel:
+                text:"Enter your passcode"
+                halign:"center"
+                font_style:"Caption"
+                text_color:36/255, 146/255, 255/255, 1
+                pos_hint:{"center_x":.5,"center_y":.7}
+            MDIcon:
+                id:locks
+                icon:"lock"
+                halign:"center"
+                pos_hint:{"center_x":.2,"center_y":.58}
+            MDTextField:
+                id:login_code
+                mode: "rectangle"
+                size_hint: .5, .09
+                hint_text:"Code"
+                password:True
+                pos_hint:{'center_x':.53, 'center_y':.58}
+                font_size: dp(25)
+                on_text:
+                    app.login_view()
+            MDRaisedButton:
+                id:view
+                text: "Login"
+                size_hint: .4, .06
+                #pos_hint:{'center_x':.65, 'center_y':.45}
+                pos_hint:{'center_x':.65, 'center_y':2}
+                on_release:
+                    manager.current="results"
+
+
+
+
+
+
+
+    MDScreen:
+        name:"live"
+        FloatLayout:
+            AsyncImage:
+                source:"https://tanzaniahotelsagent.co.tz/wp-content/uploads/2021/01/7-Solid-Reasons-to-Visit-Lake-Magadi.jpg"
+                size_hint:None, None
+                pos_hint:{"center_x":.5, "center_y":.8}
+                size:600, 300
+            MDChip:
+                text: 'English'
+                icon: ''
+                color: 235/255, 115/255, 115/255, 1
+                pos_hint:{"center_x":.13,"center_y":.56}
+                on_release:
+                    app.tranlaten()
+            MDChip:
+                text: 'France'
+                icon: ''
+                color: 235/255, 115/255, 115/255, 1
+                pos_hint:{"center_x":.35,"center_y":.56}
+                on_release:
+                    app.tranlat()
+            MDChip:
+                text: 'Sawhili'
+                icon: ''
+                color: 235/255, 115/255, 115/255, 1
+                pos_hint:{"center_x":.57,"center_y":.56}
+            MDIconButton:
+                icon:"map-marker-radius"
+                user_font_size:"40sp"
+                pos_hint:{"center_x":.9,"center_y":.56}
+            MDLabel:
+                halign:"left"
+                font_size:"23sp"
+                text:"Lake Magadi"
+                pos_hint:{"center_x":.55, "center_y":.5}
+            ScrollView:
+                pos_hint:{"top":.45}
+                MDBoxLayout:
+                    orientation:'vertical'
+                    adaptive_height: True
+                    padding: dp(5), dp(4)
+                    spacing: dp(15)
+                    MDLabel:
+                        halign:"left"
+                        font_size:"16sp"
+                        padding:dp(20), dp(4)
+                        text: app.set
+                        size_hint_y: None
+                        height: self.texture_size[1]
+    MDScreen:
+        name:"test"
+        MDBoxLayout:
+            orientation:"vertical"
+            spacing: dp(20)
+            MDLabel:
+                halign:"center"
+                text:"Special Locations"
+                font_size:"21sp"
+                size_hint_y: None
+                height: self.texture_size[1]
+            ScrollView:
+                MDBoxLayout:
+                    orientation:'vertical'
+                    adaptive_height: True
+                    padding: dp(10), dp(4)
+                    spacing: dp(15)
+                    Foods:
+                        label:"Lake Magadi"
+                        pos_hint:{"center_x":.5, "center_y":.4}
+                        image:"https://tanzaniahotelsagent.co.tz/wp-content/uploads/2021/01/7-Solid-Reasons-to-Visit-Lake-Magadi.jpg"
+                    Foods:
+                        label:"Lobo Hills"
+                        pos_hint:{"center_x":.5, "center_y":.4}
+                        image:"https://live.staticflickr.com/2878/9390162349_d0a25c6bc6_b.jpg"
+                    Foods:
+                        label:"Naabi Hills"
+                        pos_hint:{"center_x":.5, "center_y":.4}
+                        image:"https://chazsin.files.wordpress.com/2015/03/wildebeests-as-far-as-the-eye-could-see.jpg"
+                    Foods:
+                        label:"Retima Hippo Pool"
+                        pos_hint:{"center_x":.5, "center_y":.4}
+                        image:"https://media.discoverafrica.com/wp-content/uploads/2021/11/3-23.jpg?strip=all&lossy=1&fit=1200%2C750&ssl=1"
+                    Foods:
+                        label:"Olduvai Gorge"
+                        pos_hint:{"center_x":.5, "center_y":.4}
+                        image:"https://altezza.travel/upload/medialibrary/0e2/0e26ba601737553bc77ab2ea1fadfcd9.jpg"
+
+                    Foods:
+                        label:"Seronera"
+                        pos_hint:{"center_x":.5, "center_y":.75}
+                        image:"https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcSrbvnudC0vhaUhOJGCwRCUN2Xz-ujZrKMaukDzYZIMkWRrQTiFw3MEca1IdNsD6hJEVbVZ-jYtAkEfIs8jQzZZGJ5q7Q"
+
+
+
+    MDScreen:
+        name:'home'
+        FloatLayout:
+            orientation:'vertical'
+            Emergency:
+                pos_hint:{"center_x":.5, "center_y":.96}
+            Front:
+                pos_hint:{'center_x':.5, 'center_y':.7}
+                MDIconButton:
+                    icon:"plus"
+                    user_font_size:"100sp"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+
+            MDLabel:
+                halign:"center"
+                text:"Add Medicine"
+                pos_hint:{'center_x':.5, 'center_y':.6}
+            Front:
+                pos_hint:{'center_x':.5, 'center_y':.4}
+                MDIconButton:
+                    icon:"magnify"
+                    user_font_size:"100sp"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+            MDLabel:
+                halign:"center"
+                text:"Search Medicine"
+                pos_hint:{'center_x':.5, 'center_y':.3}
+
+
+
+    MDScreen:
+        name:"share"
+        FloatLayout:
+            MDTextField:
+                id:username
+                mode: "rectangle"
+                #fill_color: 0, 0, 0, .4
+                size_hint: .6, .1
+                pos_hint:{'center_x':.5, 'center_y':.8}
+                hint_text:"Share, phone number"
+                #text_color: 1, 1, 1, 1
+                font_size: dp(25)
+            Deco:
+                pos_hint:{"center_x":.5,"center_y":.6}
+                md_bg_color: .35, .35, .35, 1
+                elevation: 7
+                size: app.size_x/1.2, app.size_y/7
+            MDLabel:
+                halign:"center"
+                font_size: "20sp"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                pos_hint:{"center_x":.5,"center_y":.5}
+
+            MDRaisedButton:
+                text: "Send"
+                pos_hint:{'center_x': .5, 'center_y': .45}
+                font_size: "18sp"
+                md_bg_color: 36/255, 146/255, 255/255, 1
+                on_release:
+                    app.send_txt(username.text, app.address)
+
+    MDScreen:
+        FloatLayout:
+            Front:
+                orientation:"vertical"
+                pos_hint:{"center_x":.5, "center_y":.5}
+                Image:
+                    source:"simple-neural-network-master/bus_station-t.png"
+                    size_hint:1, None
+                    size_hint:10, 10
+                    pos_hint:{"center_x":.5, "center_y":.6}
+                MDLabel:
+                    text:"hello"
+                    halign:"center"
+    MDScreen:
+        FloatLayout:
+            MDBoxLayout:
+                radius:10
+                height:240
+                size:330,320
+                md_bg_color:26/255, 54/255, 113/255, .9
+                adaptive_height:True
+                adaptive_width:True
+                pos_hint:{"center_x":.5, "center_y":.6}
+            Elip:
+                pos_hint:{"center_x":.5, "center_y":.9}
+            Elip:
+                pos_hint:{"center_x":.6, "center_y":.9}
+            Elip:
+                pos_hint:{"center_x":.54, "center_y":.93}
+                size:90, 50
+                radius:10
+
+            Car:
+                pos_hint:{"center_x":.54, "center_y":-.3}
+            Car:
+                pos_hint:{"center_x":.04, "center_y":-.2}
+            Car:
+                pos_hint:{"center_x":.8, "center_y":-.1}
+            Car:
+                pos_hint:{"center_x":.04, "center_y":.56}
+            MDLabel:
+                text:"Bus Name"
+                halign:"center"
+                font_size:"20sp"
+                pos_hint:{'center_x':.34, 'center_y':.77}
+                theme_text_color:"Custom"
+                text_color:211/255, 211/255, 211/255, 1
+            MDTextField:
+                id:username
+                mode: "rectangle"
+                color_mode: 'custom'
+                hint_text:"marangu Coach"
+                line_color_focus: 1, 1, 1, 1
+                line_color_normal: app.theme_cls.accent_color
+                size_hint: .6, .08
+                pos_hint:{'center_x':.5, 'center_y':.7}
+                font_size: dp(25)
+            MDLabel:
+                text:"Plate Number"
+                halign:"center"
+                font_size:"19sp"
+                pos_hint:{'center_x':.48, 'center_y':.61}
+                theme_text_color:"Custom"
+                text_color:211/255, 211/255, 211/255, 1
+            TNumberField:
+                mode: "rectangle"
+                color_mode: 'custom'
+                hint_text: "T123"
+                line_color_focus: 1, 1, 1, 1
+                line_color_normal: app.theme_cls.accent_color
+                size_hint: .3, .08
+                pos_hint:{'center_x':.5, 'center_y':.54}
+                font_size: dp(25)
+            MDRaisedButton:
+                text: "Login"
+                size_hint: None, None
+                size: dp(120), dp(60)
+                pos_hint: {'center_x': 0.5, 'center_y': 0.43}
+                md_bg_color: 1, 1, 1, 1
+                theme_text_color: "Custom"
+                text_color: 26/255, 54/255, 113/255, 1
+    MDScreen:
+        name:"sts"
+        md_bg_color:242/255, 186/255, 133/255, .3
+        FloatLayout:
+            MDLabel:
+                text:"PUMA"
+                halign:"left"
+                font_size:"30sp"
+                padding:25, 0
+                pos_hint:{"center_y":.8}
+                theme_text_color: "Custom"
+                text_color:75/255, 123/255, 146/255
+            MDLabel:
+                text:"1.4 km a way"
+                halign:"center"
+                pos_hint:{"center_y":.73, "center_x":.2}
+            MDLabel:
+                text:"it will take 10hr 2min"
+                halign:"center"
+                pos_hint:{"center_y":.68, "center_x":.26}
+            MDLabel:
+                text:"Petroleum"
+                halign:"center"
+                font_size:"25sp"
+                pos_hint:{"center_y":.6, "center_x":.23}
+                theme_text_color: "Custom"
+                text_color:75/255, 123/255, 146/255
+            MDLabel:
+                text:"2,300"
+                halign:"center"
+                font_size:"21sp"
+                pos_hint:{"center_y":.56, "center_x":.23}
+            MDLabel:
+                text:"Diesel"
+                halign:"center"
+                font_size:"25sp"
+                pos_hint:{"center_y":.6, "center_x":.7}
+                theme_text_color: "Custom"
+                text_color:75/255, 123/255, 146/255
+            MDLabel:
+                text:"2,300"
+                halign:"center"
+                font_size:"21sp"
+                pos_hint:{"center_y":.56, "center_x":.7}
+            MDRaisedButton:
+                text: "Login"
+                theme_text_color: "Custom"
+                text_color: 26/255, 54/255, 113/255, 1
+                pos_hint:{"center_y":.32, "center_x":.48}
+    MDScreen:
+        name:"Track me"
+        MDBoxLayout:
+            orientation: "vertical"
+            MDToolbar:
+                title: "Track"
+                specific_text_color:78/255, 82/255, 84/255, 1
+                md_bg_color:1, 1, 1, 1
+
+            MDTabs:
+                allow_stretch:False
+                background_color:1, 1, 1, 1
+                indicator_color:36/255, 146/255, 255/255, 1
+                tab_hint_x:True
+                text_color_active:78/255, 82/255, 84/255, 1
+                text_color_normal:.5, .5, .5, 1
+
+                Tab:
+                    title:"self track"
+                    FloatLayout:
+                        MDIconButton:
+                            id:track_strt
+                            icon:"map-marker-off"
+                            pos_hint:{"center_y":.9, "center_x":.5}
+                            user_font_size:"40sp"
+                            theme_text_color: "Custom"
+                            text_color: .5, .5, .5, 1
+                            on_release:
+                                idd.text = "yew873"
+                                app.id_generator()
+                                if self.icon == "map-marker-circle": self.icon = "map-marker-off"
+                                else: self.icon = "map-marker-circle"
+                                if self.icon == "map-marker-circle": self.text_color = 0, 150/255, 0, 1
+                                if self.icon == "map-marker-off": self.text_color = .5, .5, .5, 1
+
+                        MDRaisedButton:
+                            id:idd
+                            text:""
+                            pos_hint:{"center_y":.8, "center_x":.5}
+                Tab:
+                    title:"Track someone"
+                    FloatLayout:
+                        MDTextField:
+                            id:username
+                            mode: "rectangle"
+                            #fill_color: 0, 0, 0, .4
+                            size_hint: .2, .1
+                            pos_hint:{'center_x':.5, 'center_y':.9}
+                            hint_text:"Enter id"
+                            #text_color: 1, 1, 1, 1
+                            font_size: dp(25)
+                        MDIconButton:
+                            icon:"map-marker-off"
+                            pos_hint:{"center_y":.8, "center_x":.5}
+                            user_font_size:"40sp"
+                            theme_text_color: "Custom"
+                            text_color: .5, .5, .5, 1
+                            on_release:
+                                idd.text = "yew873"
+                                if self.icon == "map-marker-circle": self.icon = "map-marker-off"
+                                else: self.icon = "map-marker-circle"
+                                if self.icon == "map-marker-circle": self.text_color = 0, 150/255, 0, 1
+                                if self.icon == "map-marker-off": self.text_color = .5, .5, .5, 1
+
+    MDScreen:
+        MDBoxLayout:
+            orientation: "vertical"
+
+            MDToolbar:
+                title: "Location Manager"
+                specific_text_color:78/255, 82/255, 84/255, 1
+                md_bg_color:1, 1, 1, 1
+
+            MDTabs:
+                allow_stretch:False
+                background_color:1, 1, 1, 1
+                indicator_color:36/255, 146/255, 255/255, 1
+                tab_hint_x:True
+                text_color_active:78/255, 82/255, 84/255, 1
+                text_color_normal:.5, .5, .5, 1
+
+                Tab:
+                    title: "bus detail"
+                    FloatLayout:
+                        MDLabel:
+                            halign:"left"
+                            text:"Marangu Coach"
+                            theme_text_color:"Custom"
+                            #text_color:1,1,1,1
+                            padding: dp(20), dp(0)
+                            font_size:"21sp"
+                            pos_hint:{"center_y":.93}
+                        MDLabel:
+                            halign:"center"
+                            text:"T657"
+                            theme_text_color:"Custom"
+                            #text_color:1,1,1,1
+                            font_style:"H6"
+                            pos_hint:{"center_x":.16, "center_y":.88}
+
+                        MDBoxLayout:
+                            pos_hint:{"center_x":.5, "center_y":.68}
+                            orientation:"vertical"
+                            height:142
+                            adaptive_height:True
+                            md_bg_color:214/255, 223/255, 232/255, 1
+                            radius:8
+                        MDIcon:
+                            halign:"center"
+                            pos_hint:{"center_x":.1, "center_y":.75}
+                            icon:"map-marker-check"
+                            font_size:"43sp"
+                            theme_text_color:"Custom"
+                            text_color: 128/255, 128/255, 128/255, 1
+                        MDSeparator:
+                            pos_hint:{"center_y":.68,"center_x":.1}
+                            orientation:"vertical"
+                            #color:150/255, 111/255, 51/255, 1
+                            width:3
+                            size_hint:None, .05
+                        MDIcon:
+                            halign:"center"
+                            pos_hint:{"center_x":.1, "center_y":.61}
+                            icon:"map-marker-radius"
+                            font_size:"43sp"
+                            theme_text_color:"Custom"
+                            text_color: 0, 150/255, 0, 1
+                        MDLabel:
+                            halign:"left"
+                            text:"Marangu Coach"
+                            theme_text_color:"Custom"
+                            #text_color:1,1,1,1
+                            padding: dp(70), dp(0)
+                            font_size:"21sp"
+                            pos_hint:{"center_y":.75}
+                            theme_text_color: "Custom"
+                            text_color:26/255, 54/255, 113/255
+                        MDLabel:
+                            halign:"left"
+                            text:"Marangu Coach"
+                            theme_text_color:"Custom"
+                            #text_color:1,1,1,1
+                            padding: dp(70), dp(0)
+                            font_size:"21sp"
+                            pos_hint:{"center_y":.61}
+                            theme_text_color: "Custom"
+                            text_color:26/255, 54/255, 113/255
+                        MDIconButton:
+                            icon:"map-marker"
+                            pos_hint:{"center_x":.6,"center_y":.47}
+                            user_font_size:"30sp"
+                            md_bg_color: .35, .35, .35, 1
+                            theme_text_color: "Custom"
+                            text_color: 1, 1, 1, 1
+                            on_release:
+                                app.screen_capture("share")
+                        MDIconButton:
+                            icon:"clipboard-text-outline"
+                            pos_hint:{"center_x":.4,"center_y":.47}
+                            user_font_size:"30sp"
+                            md_bg_color: .35, .35, .35, 1
+                            theme_text_color: "Custom"
+                            text_color: 1, 1, 1, 1
+                            on_release:
+                                app.screen_capture("map_loc")
+
+
+
+                Tab:
+                    title:"bus stops"
+                    FloatLayout:
+                        RecycleView:
+                            id: stops
+                            key_viewclass: 'viewclass'
+                            key_size: 'height'
+                            pos_hint:{"center_x":.5,"top":.97}
+                            RecycleBoxLayout:
+                                id:wali
+                                spacing:dp(10)
+                                padding: dp(10)
+                                default_size: None, dp(55)
+                                default_size_hint: 1, None
+                                size_hint_y: None
+                                height: self.minimum_height
+                                orientation: 'vertical'
+
+    MDScreen:
+        name:"sms_stop"
+        FloatLayout:
+            MDTextField:
+                id:username
+                mode: "rectangle"
+                #fill_color: 0, 0, 0, .4
+                size_hint: .6, .1
+                pos_hint:{'center_x':.5, 'center_y':.8}
+                hint_text:"Share, phone number"
+                #text_color: 1, 1, 1, 1
+                font_size: dp(25)
+            Deco:
+                pos_hint:{"center_x":.5,"center_y":.6}
+                md_bg_color: .35, .35, .35, 1
+                elevation: 7
+                size: app.size_x/1.2, app.size_y/7
+                MDLabel:
+                    id:name_stop
+                    text:""
+                    halign:"center"
+                    font_size: "20sp"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+                    pos_hint:{"center_x":.5,"center_y":.5}
+
+            MDRaisedButton:
+                text: "Send"
+                pos_hint:{'center_x': .5, 'center_y': .45}
+                font_size: "18sp"
+                md_bg_color: 36/255, 146/255, 255/255, 1
+                on_release:
+                    app.send_txt(username.text, app.address)
+
+    MDScreen:
+        name:"bus_data"
+        FloatLayout:
+            MDTextField:
+                id:bus_id
+                mode: "rectangle"
+                #fill_color: 0, 0, 0, .4
+                size_hint: .2, .08
+                pos_hint:{'center_x':.4, 'center_y':.92}
+                hint_text:"location"
+                #text_color: 1, 1, 1, 1
+                font_size: dp(20)
+            MDRaisedButton:
+                text:"Search"
+                md_bg_color: 26/255, 54/255, 113/255, 1
+                pos_hint:{"center_y":.91, "center_x":.7}
+                on_release:
+                    app.fetch()
+            MDSeparator:
+                pos_hint:{"center_y":.85,"center_x":.5}
+                #color:150/255, 111/255, 51/255, 1
+                width:3
+                size_hint:5, None
+            MDBoxLayout:
+                adaptive_height:True
+                height:dp(200)
+                #md_bg_color:26/255, 54/255, 113/255, 1
+                pos_hint:{"center_y":.76,"center_x":.5}
+                id:bus_detail
+
+    MDScreen:
+        name:"admin"
+        MDBottomNavigation:
+            id:bnav
+            #panel_color: 0, 0, 0, 1
+            MDBottomNavigationItem:
+                name: 'home'
+                text: 'main-schedules'
+                icon: 'map-marker-distance'
+                FloatLayout:
+                    Emergency:
+                        pos_hint:{"center_x":.5, "center_y":.95}
+                        call:"plus"
+                        name:"Routes"
+                        pos_y:.5
+                        pos_x:.15
+                    MDRaisedButton:
+                        text:"chalinze"
+                        md_bg_color: 26/255, 54/255, 113/255, 1
+                        pos_hint:{"center_y":.6, "center_x":.5}
+                    MDSeparator:
+                        pos_hint:{"center_y":.5,"center_x":.5}
+                        orientation:"vertical"
+                        #color:150/255, 111/255, 51/255, 1
+                        width:2
+                        size_hint:None, .1
+                    MDRaisedButton:
+                        text:"Mlandizi, sokoni moja"
+                        md_bg_color: 26/255, 54/255, 113/255, 1
+                        pos_hint:{"center_y":.4, "center_x":.5}
+                        on_release:
+                            app.category_sheet(app.matumizi)
+
+
+
+            MDBottomNavigationItem:
+                name: 'room'
+                text: 'location'
+                icon: 'map-marker'
+    MDScreen:
+        name:"same"
+        FloatLayout:
+            Emergency:
+                md_bg_color:221/255, 221/255, 207/255, .7
+                height:dp(30)
+                name:"Car Emergencies"
+                pos_x:.2
+                pos_y:.5
+                call:""
+                pos_hint:{"center_x":.5, "top":.85}
+            Emergency:
+                icon:"gas-station"
+                name:"Fuel"
+                phone:"0715700411"
+                pos_hint:{"center_x":.5, "top":.8}
+            Emergency:
+                name:"Tow Truck"
+                icon:"tow-truck"
+                phone:"0788204327"
+                pos_hint:{"center_x":.5, "top":.7}
+            Emergency:
+                name:"Garage"
+                icon:"tools"
+                phone:"0788204327"
+                pos_hint:{"center_x":.5, "top":.6}
+            Emergency:
+                name:"Speeding"
+                icon:"truck-fast"
+                phone:"0788204327"
+                pos_hint:{"center_x":.5, "top":.5}
+            Emergency:
+                md_bg_color:221/255, 221/255, 207/255, .7
+                height:dp(30)
+                name:"Other!"
+                pos_x:.1
+                pos_y:.5
+                call:""
+                pos_hint:{"center_x":.5, "top":.38}
+            Emergency:
+                icon:"car-emergency"
+                name:"Police"
+                phone:"112"
+                pos_hint:{"center_x":.5, "top":.33}
+            Emergency:
+                name:"Fire"
+                icon:"fire-truck"
+                phone:"114"
+                pos_hint:{"center_x":.5, "top":.23}
+    MDScreen:
+        name:"acc"
+        FloatLayout:
+            MoneyCard:
+                #md_bg_color:165/255, 184/255, 189/255, 1
+                md_bg_color:36/255, 146/255, 255/255, 1
+                pos_hint:{"center_x":.5, "center_y":.933}
+                line_color:0.2, 0.2, 0.2, 0.8
+                FloatLayout:
+                    MDLabel:
+                        halign:"center"
+                        text:"50,0000"
+                        theme_text_color:"Custom"
+                        text_color:1,1,1,1
+                        font_style:"H5"
+                        pos_hint:{"center_x":.5, "center_y":.78}
+                    MDSeparator:
+                        pos_hint:{"center_x":.5, "center_y":.59}
+                    MDLabel:
+                        #halign:"center"
+                        theme_text_color:"Custom"
+                        text_color:78 / 255, 82 / 255, 84 / 255, 1
+                        text:"Income"
+                        font_style:"Body1"
+                        pos_hint:{"center_x":1.15, "center_y":.4}
+                    MDLabel:
+                        #halign:"center"
+                        theme_text_color:"Custom"
+                        text_color:.8, 1, .8, 1
+                        text:"+200,000"
+                        font_style:"H5"
+                        pos_hint:{"center_x":1.1, "center_y":.1}
+                    MDLabel:
+                        #halign:"center"
+                        theme_text_color:"Custom"
+                        text_color:78 / 255, 82 / 255, 84 / 255, 1
+                        text:"Expenses"
+                        font_style:"Body1"
+                        pos_hint:{"center_x":.6, "center_y":.4}
+
+                    MDLabel:
+                        #halign:"center"
+                        theme_text_color:"Custom"
+                        text_color:1, .8, .8, 1
+                        text:"-30,000"
+                        font_style:"H5"
+                        pos_hint:{"center_x":.6, "center_y":.1}
+            MDProgressBar:
+                id: progress
+                pos_hint: {"center_y": .83}
+                type: "indeterminate"
+                color:36/255, 146/255, 255/255, 1
+                size: .1, .1
+                max:50000
+                value:30000
+            MDLabel:
+                #halign:"center"
+                theme_text_color:"Custom"
+                text_color:78 / 255, 82 / 255, 84 / 255, 1
+                text:"60% of amount"
+                halign:"center"
+                font_style:"Caption"
+                pos_hint:{"center_x":.15, "center_y":.81}
+            MDBoxLayout:
+                pos_hint:{"center_y":.3}
+                ScrollView:
+                    bar_width:dp(10)
+                    id: scroll
+                    MDBoxLayout:
+                        orientation:'vertical'
+                        adaptive_height: True
+                        padding: dp(10), dp(4)
+                        spacing: dp(3)
+                        DateExpInc:
+                            pos_hint:{"center_y":.74}
+                        DataContainer:
+                            Details:
+                                height:wali.height
+                                orientation:"vertical"
+                                RecycleView:
+                                    id: customers
+                                    key_viewclass: 'viewclass'
+                                    key_size: 'height'
+                                    pos_hint:{"center_x":.5,"center_y":.5}
+                                    RecycleBoxLayout:
+                                        id:wali
+                                        spacing:dp(-4)
+                                        padding: dp(10)
+                                        default_size: None, dp(55)
+                                        default_size_hint: 1, None
+                                        size_hint_y: None
+                                        height: self.minimum_height
+                                        orientation: 'vertical'
+    MDScreen:
+        name:"genesis"
+        md_bg_color:211/255, 211/255, 211/255, 1
+        FloatLayout:
+            MDFloatingActionButton:
+                icon:"dog"
+                pos_hint:{"center_x":.3,"center_y":.8}
+                on_release:
+                    app.add_item("2020726")
+            MDFloatingActionButton:
+                icon:"dog"
+                pos_hint:{"center_x":.7,"center_y":.8}
+                on_release:
+                    app.add_item("202072")
+            TestCard:
+                pos_hint:{"center_x":.5, "center_y":.2}
+                size_hint:None, None
+                #default_size: None, dp(80)
+                #default_size_hint: 1, None
+                TestCard:
+                    id:maji
+                    size_hint:None, None
+                    size:app.size_x/1.05,wali.height+2
+                    #size_hint_y: wali.height+2
+                    pos_hint:{"center_x":.5, "center_y":.5}
+                    RecycleView:
+                        id: customerss
+                        key_viewclass: 'viewclass'
+                        key_size: 'height'
+                        pos_hint:{"center_x":.5,"center_y":.5}
+                        RecycleBoxLayout:
+                            id:walii
+                            spacing:dp(-10)
+                            padding: dp(10)
+                            default_size: None, dp(80)
+                            default_size_hint: 1, None
+                            size_hint_y: None
+                            height: self.minimum_height
+                            orientation: 'vertical'
+
+    MDScreen:
+        name:"chip"
+        FloatLayout:
+            Deco:
+                md_bg_color:36/255, 146/255, 255/255, 1
+                pos_hint:{"center_x":.5,"center_y":.9}
+            MDLabel:
+                halign:"center"
+                text:"jul 26"
+                theme_text_color:"Custom"
+                text_color:1, 1, 1, 1
+                font_size:"24dp"
+                pos_hint:{"center_x":.5,"center_y":.97}
+            MDIconButton:
+                icon:"arrow-left"
+                pos_hint:{"center_x":.1,"center_y":.95}
+            MDChooseChip:
+                pos_hint:{"center_x":.7,"center_y":.9}
+                #size:1,1
+                MDChip:
+                    text: 'Matumizi'
+                    icon: 'credit-card-minus'
+                    color:1,1,1,1
+                    #size:5,5
+                    size_hint: .32, .85
+                    selected_chip_color: .5,.5,1,1
+                    on_release:
+                        app.location_sheet(app.matumizi)
+                MDChip:
+                    text: 'Kipato'
+                    icon: 'credit-card-plus'
+                    color:1,1,1,1
+                    size_hint: .27, .85
+                    selected_chip_color: .5,.5,1,1
+                    on_release:
+                        app.location_sheet(app.kipato)
+            MDLabel:
+                text:"600,000"
+                halign:"center"
+                pos_hint:{"center_x":.8,"center_y":.8}
+                font_size:"30sp"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+            MDLabel:
+                text:app.data_name
+                halign:"center"
+                font_size:"20dp"
+                pos_hint:{"center_x":.251,"center_y":.8}
+            MDIcon:
+                icon:app.data_icon
+                halign:"center"
+                font_size:"40dp"
+                pos_hint:{"center_x":.1,"center_y":.8}
+    MDScreen:
+        name:"login"
+        FloatLayout:
+            Deco:
+                size: app.size_x/1.2, app.size_y/2.2
+                pos_hint:{"center_x":.5,"center_y":.6}
+            MDLabel:
+                text:"Login"
+                halign:"center"
+                theme_text_color: "Custom"
+                font_style:"H3"
+                text_color:36/255, 146/255, 255/255, 1
+                pos_hint:{"center_x":.5,"center_y":.75}
+            MDLabel:
+                text:"Enter your passcode"
+                halign:"center"
+                font_style:"Caption"
+                text_color:36/255, 146/255, 255/255, 1
+                pos_hint:{"center_x":.5,"center_y":.7}
+            MDIcon:
+                id:lock
+                icon:"lock"
+                halign:"center"
+                pos_hint:{"center_x":.2,"center_y":.58}
+            MDTextField:
+                id:code
+                mode: "rectangle"
+                size_hint: .5, .09
+                hint_text:"Code"
+                password:True
+                pos_hint:{'center_x':.53, 'center_y':.58}
+                font_size: dp(25)
+                on_text:
+                    app.login_auto()
+            MDRaisedButton:
+                id:lgn
+                text: "Login"
+                size_hint: .4, .06
+                #pos_hint:{'center_x':.65, 'center_y':.45}
+                pos_hint:{'center_x':.65, 'center_y':2}
+                md_bg_color: 83 / 225, 186 / 225, 115 / 225, 1
+                on_release:
+                    app.code_save()
+    MDScreen:
+        name:"calc"
+        FloatLayout:
+            MDLabel:
+                text:app.ramount
+                halign:"center"
+                pos_hint:{"center_x":.8,"center_y":.9}
+            MDFloatingActionButton:
+                icon:"check"
+                id:plus
+                pos_hint:{"center_x":.87,"center_y":.45}
+                md_bg_color:36/255, 146/255, 255/255, 1
+            Keyboard:
+                pos_hint:{"center_x":.5,"center_y":.2}
+
+<Year@MDCard>:
+
+<old>:
+    FloatLayout:
+        pos_hint:{'center_x':.5, 'center_y':.56}
+        Front:
+            pos_hint:{'center_x':.5, 'center_y':.73}
+            size:app.size_x/1.1,app.size_y/2.7
+        MDLabel:
+            text:""
+            halign:"left"
+            font_size:"25sp"
+            pos_hint:{"center_x":.6, "center_y":.88}
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+        MDLabel:
+            text:"Total:"
+            halign:"center"
+            font_size:"20sp"
+            pos_hint:{"center_x":.7, "center_y":.88}
+        MDLabel:
+            text:""
+            halign:"center"
+            font_size:"22sp"
+            pos_hint:{"center_x":.82, "center_y":.88}
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+        MDLabel:
+            text:"Unit:"
+            halign:"left"
+            font_size:"20sp"
+            pos_hint:{"center_x":.6, "center_y":.8}
+        MDSeparator:
+            orientation:"vertical"
+            pos_hint:{"center_x":.5, "center_y":.73}
+            width:".7"
+            size_hint:None, .25
+            color:1,1,1,1
+        MDLabel:
+            text:""
+            halign:"left"
+            font_size:"22sp"
+            pos_hint:{"center_x":.73, "center_y":.8}
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+        MDLabel:
+            text:"Grade:"
+            halign:"center"
+            font_size:"20sp"
+            pos_hint:{"center_x":.7, "center_y":.8}
+        MDLabel:
+            text:""
+            halign:"center"
+            font_size:"22sp"
+            pos_hint:{"center_x":.83, "center_y":.8}
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+        MDLabel:
+            text:"CA:"
+            halign:"left"
+            font_size:"20sp"
+            pos_hint:{"center_x":.6, "center_y":.7}
+        MDLabel:
+            text:""
+            halign:"left"
+            font_size:"22sp"
+            pos_hint:{"center_x":.7, "center_y":.7}
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+        MDLabel:
+            text:"Point:"
+            halign:"center"
+            font_size:"20sp"
+            pos_hint:{"center_x":.7, "center_y":.7}
+        MDLabel:
+            text:""
+            halign:"center"
+            font_size:"22sp"
+            pos_hint:{"center_x":.82, "center_y":.7}
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+        MDLabel:
+            text:"SE:"
+            halign:"left"
+            font_size:"20sp"
+            pos_hint:{"center_x":.6, "center_y":.6}
+        MDLabel:
+            text:""
+            halign:"left"
+            font_size:"22sp"
+            pos_hint:{"center_x":.7, "center_y":.6}
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+        MDLabel:
+            text:"Remark:"
+            halign:"center"
+            font_size:"20sp"
+            pos_hint:{"center_x":.65, "center_y":.6}
+
+        MDLabel:
+            text:""
+            halign:"center"
+            font_size:"22sp"
+            pos_hint:{"center_x":.85, "center_y":.6}
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+<Foods@MDCard>:
+    label:""
+    image:""
+    orientation: "vertical"
+    md_bg_color: 1, 1, 1, 1
+    padding: "10dp"
+    #spacing: "5dp"
+    border_radius: 20
+    border_color_a: 0
+    radius: [15]
+    size_hint: None, None
+    size: app.size_x/1.3, app.size_y/3
+    focus_behavior: False
+    ripple_behavior: True
+    adaptive_height:True
+    elevation: 0.1
+    FloatLayout:
+        AsyncImage:
+            source:root.image
+            size_hint:None, None
+            pos_hint:{"center_x":.5, "center_y":.6}
+            size:300, 300
+
+        MDLabel:
+            text:root.label
+            halign:"center"
+            pos_hint:{"center_x":.5, "center_y":.1}
+            font_size:"20sp"
+
+<TestCard@MDCard>:
+    orientation:"vertical"
+    adaptive_height:True
+
+<MoneyCard@MDCard>:
+    orientation: "vertical"
+    md_bg_color: 1, 1, 1, 1
+    padding: "10dp"
+    #spacing: "5dp"
+    border_radius: 20
+    border_color_a: .5
+    radius: [5]
+    size_hint: None, None
+    size: app.size_x/1, app.size_y/6
+    focus_behavior: False
+    ripple_behavior: False
+    elevation: 9
+
+
+<Deco@MDCard>:
+    orientation: "vertical"
+    md_bg_color: 1, 1, 1, 1
+    padding: "10dp"
+    #spacing: "5dp"
+    border_radius: 3
+    border_color_a: .5
+    radius: [9]
+    size_hint: None, None
+    size: app.size_x/1, app.size_y/2.5
+    focus_behavior: False
+    ripple_behavior: False
+
+<Keyboard@MDCard>:
+    orientation: "vertical"
+    md_bg_color: 1, 1, 1, 1
+    pos_hint:{"center_x":.5,"center_y":.5}
+    padding: "10dp"
+    #spacing: "5dp"
+    border_radius: 3
+    border_color_a: .5
+    radius: [9]
+    size_hint: None, None
+    size: app.size_x/1, app.size_y/2.5
+    focus_behavior: False
+    ripple_behavior: False
+    FloatLayout:
+        MDRaisedButton:
+            text: "7"
+            size_hint: .3, .2
+            elevation:9
+            font_size: "29sp"
+            pos_hint:{'center_x':.13, 'center_y':.9}
+            md_bg_color: 36/255, 146/255, 255/255, 1
+            on_release:
+                app.amount_update("7")
+        MDRaisedButton:
+            text: "8"
+            size_hint: .3, .2
+            elevation:9
+            font_size: "29sp"
+            pos_hint:{'center_x':.49, 'center_y':.9}
+            md_bg_color: 36/255, 146/255, 255/255, 1
+            on_release:
+                app.amount_update("8")
+        MDRaisedButton:
+            text: "9"
+            size_hint: .3, .2
+            elevation:9
+            font_size: "29sp"
+            pos_hint:{'center_x':.85, 'center_y':.9}
+            md_bg_color: 36/255, 146/255, 255/255, 1
+            on_release:
+                app.amount_update("9")
+        MDRaisedButton:
+            text: "4"
+            size_hint: .3, .2
+            elevation:9
+            font_size: "29sp"
+            pos_hint:{'center_x':.13, 'center_y':.65}
+            md_bg_color: 36/255, 146/255, 255/255, 1
+            on_release:
+                app.amount_update("4")
+        MDRaisedButton:
+            text: "5"
+            size_hint: .3, .2
+            elevation:9
+            font_size: "29sp"
+            pos_hint:{'center_x':.49, 'center_y':.65}
+            md_bg_color: 36/255, 146/255, 255/255, 1
+            on_release:
+                app.amount_update("5")
+        MDRaisedButton:
+            text: "6"
+            size_hint: .3, .2
+            elevation:9
+            font_size: "29sp"
+            pos_hint:{'center_x':.85, 'center_y':.65}
+            md_bg_color: 36/255, 146/255, 255/255, 1
+            on_release:
+                app.amount_update("6")
+        MDRaisedButton:
+            text: "1"
+            size_hint: .3, .2
+            elevation:9
+            font_size: "29sp"
+            pos_hint:{'center_x':.13, 'center_y':.4}
+            md_bg_color: 36/255, 146/255, 255/255, 1
+            on_release:
+                app.amount_update("1")
+        MDRaisedButton:
+            text: "2"
+            size_hint: .3, .2
+            elevation:9
+            font_size: "29sp"
+            pos_hint:{'center_x':.49, 'center_y':.4}
+            md_bg_color: 36/255, 146/255, 255/255, 1
+            on_release:
+                app.amount_update("2")
+        MDRaisedButton:
+            text: "3"
+            size_hint: .3, .2
+            elevation:9
+            font_size: "29sp"
+            pos_hint:{'center_x':.85, 'center_y':.4}
+            md_bg_color: 36/255, 146/255, 255/255, 1
+            on_release:
+                app.amount_update("1")
+        MDRaisedButton:
+            text: "000"
+            size_hint: .3, .2
+            elevation:9
+            font_size: "29sp"
+            pos_hint:{'center_x':.13, 'center_y':.1}
+            md_bg_color: 36/255, 146/255, 255/255, 1
+            on_release:
+                app.amount_update("000")
+        MDRaisedButton:
+            text: "0"
+            size_hint: .3, .2
+            elevation:9
+            font_size: "29sp"
+            pos_hint:{'center_x':.49, 'center_y':.1}
+            md_bg_color: 36/255, 146/255, 255/255, 1
+            on_release:
+                app.amount_update("0")
+        MDRaisedButton:
+            text: "X"
+            size_hint: .3, .2
+            elevation:9
+            font_size: "29sp"
+            pos_hint:{'center_x':.85, 'center_y':.1}
+            md_bg_color: 36/255, 146/255, 255/255, 1
+            on_release:
+                app.delete()
+
+
+
+
+
+
+
+<MainCard@MDBoxLayout>:
+    orientation:"vertical"
+    adaptive_height:True
+    #md_bg_color:.5, 1, .5, 1
+    radius:8
+    pos_hint:{"center_x":.5,"center_y":.5}
+
+<Invoice@MDBoxLayout>:
+    orientation:"vertical"
+    adaptive_height:True
+    #md_bg_color:.5, 1, .5, 1
+    radius:9
+    size:dp(40),dp(150)
+    pos_hint:{"center_x":.5,"center_y":.5}
+    md_bg_color:36/255, 146/255, 255/255, 1
+    FloatLayout:
+        MDLabel:
+            halign:"center"
+            text:"Tuition Fee"
+            pos_hint:{'center_x':.5, 'center_y':.9}
+        MDLabel:
+            halign:"center"
+            text:"Control Number"
+            pos_hint:{'center_x':.15, 'center_y':.7}
+        MDLabel:
+            halign:"center"
+            text:"995470214172"
+            pos_hint:{'center_x':.15, 'center_y':.4}
+        MDLabel:
+            halign:"center"
+            text:"Amount"
+            pos_hint:{'center_x':.5, 'center_y':.7}
+        MDLabel:
+            halign:"center"
+            text:"10000000"
+            pos_hint:{'center_x':.5, 'center_y':.4}
+        MDLabel:
+            halign:"center"
+            text:"Paid"
+            pos_hint:{'center_x':.8, 'center_y':.7}
+        MDLabel:
+            halign:"center"
+            text:"500000"
+            pos_hint:{'center_x':.8, 'center_y':.4}
+        MDSeparator:
+            pos_hint:{"center_x":.5, "center_y":.55}
+            orientation:"horizontal"
+            color:1, 1, 1, 1
+            width:.5
+            size_hint:.95, None
+        MDLabel:
+            halign:"center"
+            text:"5000000"
+            font_size:"20sp"
+            pos_hint:{'center_x':.8, 'center_y':.15}
+
+
+<CustomOneLineIconListItem>:
+
+    on_release:
+        print("Aqulline")
+
+<Labels>
+    text:"No Entry To day!"
+    halign:"center"
+    font_style:"H3"
+    font_size:"25dp"
+    adaptive_height:True
+
+
+<MainCard@MDBoxLayout>:
+    orientation:"vertical"
+    adaptive_height:True
+    #md_bg_color:.5, 1, .5, 1
+    radius:8
+    pos_hint:{"center_x":.5,"center_y":.5}
+
+<Details@MDBoxLayout>:
+    radius:9
+    adaptive_height:True
+    md_bg_color:.1,.1,.2,.1
+    pos_hint:{"center_x":.5,"top":.8}
+    orientation:"vertical"
+
+<RowsCard@MDCard>:
+    #orientation: "vertical"
+    md_bg_color: 1, 1, 1, 1
+    pos_hint:{"center_x":.5,"center_y":.3}
+    padding: "10dp"
+    #spacing: "5dp"
+    border_radius: 3
+    border_color_a: .5
+    border_color_a: 1
+    adaptive_height:True
+    radius: [3]
+    size_hint: None, None
+    size: app.size_x/1.5, app.size_y/11
+    focus_behavior: False
+    ripple_color:.9, .9, .95, 1
+    ripple_behavior: True
+    name:""
+    icon:""
+    on_release:
+        print(root.name)
+    FloatLayout:
+        MDIcon:
+            icon:root.icon
+            badge_icon:"cat"
+            font_size:"30sp"
+            theme_text_color:"Custom"
+            text_color: 1, .5, .5, 1
+            pos_hint:{"center_x":.5,"center_y":.5}
+        MDLabel:
+            text:root.name
+            font_size:"20sp"
+            halign:"center"
+            pos_hint:{"center_x":.5,"center_y":.5}
+
+<RowCard>:
+    #orientation: "vertical"
+    md_bg_color: 1, 1, 1, 1
+    pos_hint:{"center_x":.5,"center_y":.3}
+    padding: "10dp"
+    #spacing: "5dp"
+    border_radius: 3
+    border_color_a: .5
+    border_color_a: 1
+    adaptive_height:True
+    radius: [3]
+    size_hint: None, None
+    size: app.size_x/1.5, app.size_y/11
+    focus_behavior: False
+    ripple_color:.9, .9, .95, 1
+    ripple_behavior: True
+    FloatLayout:
+        MDIcon:
+            icon:root.icon
+            badge_icon:"cat"
+            font_size:"30sp"
+            theme_text_color:"Custom"
+            text_color: 1, .5, .5, 1
+            pos_hint:{"center_x":.5,"center_y":.5}
+        MDLabel:
+            text:root.name
+            font_size:"20sp"
+            halign:"center"
+            pos_hint:{"center_x":.63,"center_y":.5}
+        MDLabel:
+            text:"+"+root.price+"/="
+            pos_hint:{"center_x":1.3,"center_y":.5}
+
+<DataCard>:
+    adaptive_height:True
+    md_bg_color:.1,.3,.3,1
+    size_hint:None, None
+    size:app.size_x/1.5, app.size_y/11
+    radius:2
+    ripple_color:.1,.4,.4,1
+    ripple_behavior: True
+    FloatLayout:
+        MDIcon:
+            icon:root.icon
+            halign:"center"
+            font_size:"25sp"
+            pos_hint: {'center_x': .07, "center_y":.5}
+        MDLabel:
+            halign:"center"
+            text:root.name
+            font_size:"20sp"
+            height: self.texture_size[1]
+            width: self.texture_size[1]
+            pos_hint: {'center_x': .2, "center_y":.5}
+        MDLabel:
+            halign:"center"
+            text:root.amount
+            height: self.texture_size[1]
+            width: self.texture_size[1]
+            pos_hint: {'center_x': .8, "center_y":.5}
+
+<ResultCard@MDCard>:
+    adaptive_height:True
+    md_bg_color:.7, .7, .7, 1
+    size_hint:None, None
+    size:app.size_x/1.5, app.size_y/11
+    radius:10
+    ripple_color:.9, .9, .95, 1
+    ripple_behavior: True
+    name: ""
+    grade: ""
+    FloatLayout:
+        MDLabel:
+            halign:"left"
+            text:root.name
+            font_size:"14sp"
+            height: self.texture_size[1]
+            width: self.texture_size[1]
+            pos_hint: {'center_x':.55, "center_y":.5}
+        MDLabel:
+            halign:"left"
+            text:"A"
+            font_size:"14sp"
+            height: self.texture_size[1]
+            width: self.texture_size[1]
+            pos_hint: {'center_x':1.3, "center_y":.5}
+
+
+
+<DataContainer@MDBoxLayout>:
+    md_bg_color:1, 1, 1, 1
+    size:dp(50),dp(50)
+    adaptive_height:True
+    orientation:"vertical"
+    pos_hint:{"top":.7}
+
+<DateExpInc@MDBoxLayout>:
+    size:dp(100),dp(50)
+    adaptive_height:True
+    orientation:"vertical"
+    MDBoxLayout:
+        md_bg_color:36/255, 146/255, 255/255, 1
+        MDLabel:
+            text:"july 22"
+            halign:"center"
+            font_size:"15sp"
+            pos_hint:{"center_x":.2}
+            height: self.texture_size[1]
+            width: self.texture_size[1]
+        MDLabel:
+            text:"Expenses:-20,000"
+            halign:"center"
+            font_size:"12sp"
+            pos_hint:{"center_x":.6}
+            height: self.texture_size[1]
+            width: self.texture_size[1]
+        MDLabel:
+            text:"Income:+30,000"
+            halign:"center"
+            font_size:"12sp"
+            pos_hint:{"center_x":.8}
+            height: self.texture_size[1]
+            width: self.texture_size[1]
+
+<Emergency>:
+    radius:9
+    adaptive_height:True
+    name:""
+    icon:""
+    phone:""
+    call:"phone"
+    pos_x: .27
+    pos_y: .64
+    height:dp(65)
+    md_bg_color:214/255, 223/255, 232/255, 1
+    #pos_hint:{"center_x":.5,"top":.8}
+    orientation:"vertical"
+    FloatLayout:
+        MDIcon:
+            icon:root.icon
+            font_size:"40sp"
+            pos_hint:{"center_x":.53,"center_y":.5}
+        MDLabel:
+            id:nm
+            text:root.name
+            halign:"left"
+            font_size:"20sp"
+            padding: 70, 0
+            theme_text_color: "Custom"
+            text_color:26/255, 54/255, 113/255
+            pos_hint:{"center_y":root.pos_y}
+        MDLabel:
+            text:root.phone
+            halign:"center"
+            font_size:"20sp"
+            font_style:"Caption"
+            theme_text_color: "Custom"
+            text_color:26/255, 54/255, 113/255
+            pos_hint:{"center_x":.27,"center_y":.32}
+        MDIconButton:
+            icon:root.call
+            font_size:"35sp"
+            pos_hint:{"center_x":.9,"center_y":.5}
+            on_release:
+                print(root.name)
+                app.sms_scrn(root.name)
+
+<Garbage@MDBoxLayout>:
+    radius:9
+    adaptive_height:True
+    height:dp(100)
+    md_bg_color:214/255, 223/255, 232/255, 1
+    pos_hint:{"center_x":.5,"top":.8}
+    orientation:"vertical"
+    request_id: ""
+    garbage_type:""
+    truck_number: ""
+    status: ""
+    FloatLayout:
+        MDLabel:
+            text:"PO3df3"
+            halign:"left"
+            font_size:"20sp"
+            theme_text_color: "Custom"
+            text_color:235/255, 115/255, 115/255, 1
+            pos_hint:{"center_x":.55,"center_y":.85}
+        MDLabel:
+            text:"G.Type: Medical Waste"
+            halign:"left"
+            font_size:"15sp"
+            theme_text_color: "Custom"
+            text_color:26/255, 54/255, 113/255, 1
+            pos_hint:{"center_x":.53,"center_y":.5}
+        MDLabel:
+            text:"Truck No: 0788204327"
+            halign:"left"
+            font_size:"13sp"
+            theme_text_color: "Custom"
+            text_color:26/255, 54/255, 113/255, 1
+            pos_hint:{"center_x":.53,"center_y":.2}
+        MDChip:
+            text: 'Pending'
+            icon: ''
+            color: 235/255, 115/255, 115/255, 1
+            pos_hint:{"center_x":.8,"center_y":.3}
+<Saloon@MDBoxLayout>:
+    radius:9
+    adaptive_height:True
+    height:dp(200)
+    md_bg_color:214/255, 223/255, 232/255, 1
+    pos_hint:{"center_x":.5,"top":.8}
+    orientation:"vertical"
+    name:""
+    vicinity:""
+    status:""
+    rating:""
+    FloatLayout:
+        MDLabel:
+            text:"Golden Fork Restaurant"
+            halign:"left"
+            font_size:"17sp"
+            theme_text_color: "Custom"
+            text_color:26/255, 54/255, 113/255
+            pos_hint:{"center_x":.55,"center_y":.85}
+        MDLabel:
+            text:"0788204327"
+            halign:"left"
+            font_size:"16sp"
+            theme_text_color: "Custom"
+            text_color:26/255, 54/255, 113/255, 1
+            pos_hint:{"center_x":.6,"center_y":.7}
+        MDIcon:
+            icon:"dog"
+            pos_hint:{"center_x":.53,"center_y":.5}
+        MDLabel:
+            text:"knotres"
+            halign:"left"
+            font_size:"20sp"
+            theme_text_color: "Custom"
+            text_color:26/255, 54/255, 113/255, 1
+            pos_hint:{"center_x":.6,"center_y":.5}
+        MDChip:
+            text: '2,000/Tsh'
+            icon: ''
+            color: 235/255, 115/255, 115/255, 1
+            pos_hint:{"center_x":.8,"center_y":.85}
+        MDChip:
+            text: '8 am'
+            icon: 'clock-in'
+            color: 235/255, 115/255, 115/255, 1
+            pos_hint:{"center_x":.6,"center_y":.5}
+        MDChip:
+            text: '9 am'
+            icon: 'clock-out'
+            color: 235/255, 115/255, 115/255, 1
+            pos_hint:{"center_x":.86,"center_y":.5}
+        MDRaisedButton:
+            text: "View Details"
+            size_hint: .3, .2
+            elevation:9
+            #font_size: "29sp"
+            pos_hint:{'center_x':.8, 'center_y':.19}
+            md_bg_color: 26/255, 54/255, 113/255, 1
+        MDRaisedButton:
+            text: "Cancel"
+            size_hint: .3, .2
+            elevation:9
+            #font_size: "29sp"
+            pos_hint:{'center_x':.2, 'center_y':.19}
+            md_bg_color: 26/255, 54/255, 113/255, .3
+
+<Restaurants@MDBoxLayout>:
+    radius:9
+    adaptive_height:True
+    height:dp(200)
+    md_bg_color:214/255, 223/255, 232/255, 1
+    pos_hint:{"center_x":.5,"top":.8}
+    orientation:"vertical"
+    name:""
+    vicinity:""
+    status:""
+    rating:""
+    FloatLayout:
+        MDLabel:
+            text:"Golden Fork Restaurant"
+            halign:"left"
+            font_size:"17sp"
+            theme_text_color: "Custom"
+            text_color:26/255, 54/255, 113/255
+            pos_hint:{"center_x":.55,"center_y":.85}
+        MDLabel:
+            text:"0788204327"
+            halign:"left"
+            font_size:"16sp"
+            theme_text_color: "Custom"
+            text_color:26/255, 54/255, 113/255, 1
+            pos_hint:{"center_x":.6,"center_y":.7}
+        MDIcon:
+            icon:"dog"
+            pos_hint:{"center_x":.53,"center_y":.5}
+        MDLabel:
+            text:"knotres"
+            halign:"left"
+            font_size:"20sp"
+            theme_text_color: "Custom"
+            text_color:26/255, 54/255, 113/255, 1
+            pos_hint:{"center_x":.6,"center_y":.5}
+        MDChip:
+            text: '2,000/Tsh'
+            icon: ''
+            color: 235/255, 115/255, 115/255, 1
+            pos_hint:{"center_x":.8,"center_y":.85}
+        MDChip:
+            text: '8 am'
+            icon: 'clock-in'
+            color: 235/255, 115/255, 115/255, 1
+            pos_hint:{"center_x":.6,"center_y":.5}
+        MDChip:
+            text: '9 am'
+            icon: 'clock-out'
+            color: 235/255, 115/255, 115/255, 1
+            pos_hint:{"center_x":.86,"center_y":.5}
+        MDRaisedButton:
+            text: "View Details"
+            size_hint: .3, .2
+            elevation:9
+            #font_size: "29sp"
+            pos_hint:{'center_x':.8, 'center_y':.19}
+            md_bg_color: 26/255, 54/255, 113/255, 1
+        MDRaisedButton:
+            text: "Cancel"
+            size_hint: .3, .2
+            elevation:9
+            #font_size: "29sp"
+            pos_hint:{'center_x':.2, 'center_y':.19}
+            md_bg_color: 26/255, 54/255, 113/255, .3
+
+<Details@MDBoxLayout>:
+    radius:9
+    adaptive_height:True
+    height:dp(200)
+    md_bg_color:214/255, 223/255, 232/255, 1
+    pos_hint:{"center_x":.5,"top":.8}
+    orientation:"vertical"
+    FloatLayout:
+        MDLabel:
+            text:"EXTRA LUXURY"
+            halign:"center"
+            font_size:"20sp"
+            theme_text_color: "Custom"
+            text_color:26/255, 54/255, 113/255
+            pos_hint:{"center_x":.2,"center_y":.8}
+        MDLabel:
+            text:"CHANIKA ARUSHA VIA BAGAMOYO"
+            halign:"center"
+            theme_text_color: "Custom"
+            text_color:26/255, 54/255, 113/255, 1
+            pos_hint:{"center_x":.4,"center_y":.6}
+        MDLabel:
+            text:"T643DVL- AC LUXURY"
+            halign:"center"
+            theme_text_color: "Custom"
+            text_color:70/255, 69/255, 79/255, 1
+            pos_hint:{"center_x":.25,"center_y":.4}
+        MDLabel:
+            text:"TZS  45000.00"
+            halign:"center"
+            theme_text_color: "Custom"
+            text_color:235/255, 115/255, 115/255, 1
+            pos_hint:{"center_x":.8,"center_y":.18}
+        MDLabel:
+            text:"seats Available:"+" "+"45"
+            halign:"center"
+            theme_text_color: "Custom"
+            text_color:70/255, 69/255, 79/255, 1
+            font_size:"15sp"
+            theme_text_color: "Custom"
+            pos_hint:{"center_x":.8,"center_y":.4}
+        MDRaisedButton:
+            text: "View Details"
+            size_hint: .3, .2
+            elevation:9
+            #font_size: "29sp"
+            pos_hint:{'center_x':.2, 'center_y':.19}
+            md_bg_color: 26/255, 54/255, 113/255, 1
+
+
+
+<More>:
+    adaptive_height:True
+    md_bg_color:6/255, 146/255, 255/255, 1
+    size_hint:None, None
+    size:app.size_x/1.5, app.size_y/35
+    radius:2
+    ripple_color:.1,.4,.4,1
+    ripple_behavior: True
+    MDIcon:
+        icon:root.icon
+        halign:"center"
+        font_size:"35sp"
+
+<EllipseWidget@Widget>:
+    canvas:
+        Color:
+            rgba: 26/255, 54/255, 113/255, .9
+        Ellipse:
+            pos: .5, .5
+            size: 50, 50
+
+<Front@MDBoxLayout>:
+    radius:20
+    #height:240
+    size:app.size_x/3,app.size_y/6
+    md_bg_color:80 / 225, 136 / 225, 114 / 225, 1
+    adaptive_height:True
+    adaptive_width:True
+
+
+<Elip@MDBoxLayout>:
+    radius:50
+    height:240
+    size:30,30
+    md_bg_color:26/255, 54/255, 113/255, 1
+    adaptive_height:True
+    adaptive_width:True
+<Car@MDBoxLayout>:
+    orientation:"vertical"
+    FloatLayout:
+        Elip:
+            pos_hint:{"center_x":.5, "center_y":.9}
+        Elip:
+            pos_hint:{"center_x":.6, "center_y":.9}
+        Elip:
+            pos_hint:{"center_x":.54, "center_y":.93}
+            size:90, 50
+            radius:10
+
+
+<Content>:
+    radius:10
+    #height:240
+    size:app.size_x, 50
+    md_bg_color:80 / 225, 136 / 225, 114 / 225, 1
+    adaptive_height:True
+    adaptive_width:True
+    FloatLayout:
+        MDLabel:
+            text:"GPA:"+" "+root.gpa
+            halign:"left"
+            font_size:"19sp"
+            theme_text_color: "Custom"
+            text_color:26/255, 54/255, 113/255, 1
+            pos_hint:{"center_x":.7,"center_y":.5}
+        MDLabel:
+            text:root.remark
+            halign:"left"
+            font_size:"19sp"
+            theme_text_color: "Custom"
+            text_color:26/255, 54/255, 113/255, 1
+            pos_hint:{"center_x":1.1,"center_y":.5}
+
+<Main@MDBoxLayout>:
+    RecycleView:
+        id: customers
+        key_viewclass: 'viewclass'
+        key_size: 'height'
+        pos_hint:{"center_x":.5,"center_y":.5}
+        RecycleBoxLayout:
+            spacing:dp(-10)
+            padding: dp(10)
+            default_size: None, dp(80)
+            default_size_hint: 1, None
+            size_hint_y: None
+            height: self.minimum_height
+            orientation: 'vertical'

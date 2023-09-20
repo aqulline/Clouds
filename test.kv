@@ -1,0 +1,158 @@
+MDBoxLayout:
+    orientation:"vertical"
+    MDIconButton:
+        icon:"facebook"
+        pos_hint:{"center_x":.5,"center_y":.9}
+        on_release:
+            app.add_c()
+
+    ScrollView:
+        id: scroll
+        pos_hint:{"center_y":.4}
+        MDBoxLayout:
+            orientation:'vertical'
+            adaptive_height: True
+            padding: dp(10), dp(4)
+            spacing: dp(3)
+            DateExpInc:
+                pos_hint:{"center_y":.75}
+            DataContainer:
+                Details:
+                    height:wali.height
+                    orientation:"vertical"
+                    RecycleView:
+                        id: customers
+                        key_viewclass: 'viewclass'
+                        key_size: 'height'
+                        pos_hint:{"center_x":.5,"center_y":.5}
+                        RecycleBoxLayout:
+                            id:wali
+                            spacing:dp(-10)
+                            padding: dp(10)
+                            default_size: None, dp(80)
+                            default_size_hint: 1, None
+                            size_hint_y: None
+                            height: self.minimum_height
+                            orientation: 'vertical'
+
+<Details@MDBoxLayout>:
+    radius:9
+    adaptive_height:True
+    md_bg_color:.1,.1,.2,.1
+    pos_hint:{"center_x":.5,"top":.8}
+    orientation:"vertical"
+
+
+<MainCard@MDBoxLayout>:
+    orientation:"vertical"
+    adaptive_height:True
+    md_bg_color:.5, 1, .5, 1
+    radius:8
+    pos_hint:{"center_x":.5,"center_y":.5}
+
+
+<RowCard>:
+    #orientation: "vertical"
+    md_bg_color: 1, 1, 1, 1
+    pos_hint:{"center_x":.5,"center_y":.3}
+    padding: "10dp"
+    #spacing: "5dp"
+    border_radius: 3
+    border_color_a: .5
+    border_color_a: 1
+    adaptive_height:True
+    radius: [0]
+    size_hint: None, None
+    size: app.size_x/1.5, app.size_y/11
+    focus_behavior: False
+    ripple_behavior: False
+    FloatLayout:
+        MDIcon:
+            icon:root.icon
+            badge_icon:"cat"
+            font_size:"30sp"
+            theme_text_color:"Custom"
+            text_color: 1, .5, .5, 1
+            pos_hint:{"center_x":.5,"center_y":.5}
+        MDLabel:
+            text:root.name
+            font_size:"15sp"
+            #halign:"center"
+            pos_hint:{"center_x":.63,"center_y":.5}
+        MDLabel:
+            text:root.price
+            pos_hint:{"center_x":1.3,"center_y":.5}
+
+<DataCard>:
+    adaptive_height:True
+    md_bg_color:.1,.3,.3,1
+    size_hint:None, None
+    size:app.size_x/1.5, app.size_y/11
+    radius:2
+    ripple_color:.1,.4,.4,1
+    ripple_behavior: True
+    FloatLayout:
+        MDIcon:
+            icon:root.icon
+            halign:"center"
+            font_size:"25sp"
+            pos_hint: {'center_x': .07, "center_y":.5}
+        MDLabel:
+            halign:"center"
+            text:root.name
+            font_size:"20sp"
+            height: self.texture_size[1]
+            width: self.texture_size[1]
+            pos_hint: {'center_x': .2, "center_y":.5}
+        MDLabel:
+            halign:"center"
+            text:root.amount
+            height: self.texture_size[1]
+            width: self.texture_size[1]
+            pos_hint: {'center_x': .8, "center_y":.5}
+
+
+<DataContainer@MDBoxLayout>:
+    md_bg_color:.5, .5, 0, 1
+    size:dp(50),dp(50)
+    adaptive_height:True
+    orientation:"vertical"
+    pos_hint:{"top":.76}
+
+<DateExpInc@MDBoxLayout>:
+    size:dp(100),dp(50)
+    adaptive_height:True
+    orientation:"vertical"
+    MDBoxLayout:
+        md_bg_color:.5, .5, 0, 1
+        MDLabel:
+            text:"july 22"
+            halign:"center"
+            pos_hint:{"center_x":.2}
+            height: self.texture_size[1]
+            width: self.texture_size[1]
+        MDLabel:
+            text:"-20,000"
+            halign:"center"
+            pos_hint:{"center_x":.6}
+            height: self.texture_size[1]
+            width: self.texture_size[1]
+        MDLabel:
+            text:"+30,000"
+            halign:"center"
+            pos_hint:{"center_x":.8}
+            height: self.texture_size[1]
+            width: self.texture_size[1]
+<More>:
+    adaptive_height:True
+    md_bg_color:.1,.3,.3,1
+    size_hint:None, None
+    size:app.size_x/1.5, app.size_y/11
+    radius:2
+    ripple_color:.1,.4,.4,1
+    ripple_behavior: True
+    FloatLayout:
+        MDIcon:
+            icon:root.icon
+            font_size:"35dp"
+            halign:"center"
