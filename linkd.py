@@ -1,9 +1,11 @@
-import numpy
+venue = 'J7vn25t13'
 
-a = numpy.array([1, 2, 3,4])
+vn = ""
 
-print(a[[False, True, False, False]])
 
-d = {x : x*x for x in range(1, 100)}
-
-s = [1, 2, 3] * 3
+def get_venue(venue):
+    vn = ""
+    for i in venue:
+        if i == "v":
+            vn = i + venue[venue.index(i) + 1] + venue[venue.index(i) + 2] + venue[venue.index(i) + 3]
+    return vn
