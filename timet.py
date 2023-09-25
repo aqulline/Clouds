@@ -1,5 +1,11 @@
+import json
 import random
 
+
+def write(data):
+    with open("time.json", "w") as file:
+        initial_data = json.dumps(data, indent=4)
+        file.write(initial_data)
 
 def randcc(day_t):
     chic = random.choice(day_t)
@@ -34,7 +40,7 @@ start_time = 7
 
 end_time = 18
 
-departments = [f"D{x}" for x in range(1, 17)]
+departments = [f"D{x}" for x in range(1, 11)]
 
 program = [[f"{i}p{p}" for p in range(len(departments))] for i in departments]
 
@@ -53,6 +59,13 @@ venue_day_time = [[f"{i}{k}{j}" for j in time_exam] for k in days_exam for i in 
 dictiom = {"D1p0": {"D1p0m0": {"venue": "vn1", "day": "j2", "time_in": "j2t7", "time_out": "j2t9"}}}
 
 day_venu_time = []
+
+timetable = {}
+
+print(len(departments))
+print(len(program))
+print(len(module))
+print(len(module) * len(program))
 
 for i in days_exam:
     d_v_t = []
@@ -73,11 +86,28 @@ for i in program:
             venue_time = randcc(venue_r)
             venue = get_venue(venue_time)
             time_in = venue_time
-            print(time_in)
+            #print(f"{program}:{modules}")
             time_out = day_venu_time[day_venu_time.index(day_t)][day_t.index(venue_r)][venue_r.index(venue_time) + 2]
             time_still = day_venu_time[day_venu_time.index(day_t)][day_t.index(venue_r)][venue_r.index(venue_time) + 1]
             day_venu_time[day_venu_time.index(day_t)][day_t.index(venue_r)].remove(time_in)
             day_venu_time[day_venu_time.index(day_t)][day_t.index(venue_r)].remove(time_out)
             day_venu_time[day_venu_time.index(day_t)][day_t.index(venue_r)].remove(time_still)
-            dictiom = {program: {modules: {"venue": venue, "day": day, "time_in": time_in, "time_out": time_out}}}
-            print(dictiom)
+            #dictiom = {program: {modules: {"venue": venue, "day": day, "time_in": time_in, "time_out": time_out}}}
+            #print(dictiom)
+            if program not in timetable:
+                timetable[program] = {}
+
+            timetable[program][modules] = {
+                "venue": venue,
+                "day": day,
+                "time_in": time_in,
+                "time_out": time_out,
+                "module":modules,
+                "program": program,
+            }
+            #print(timetable[program][modules])
+print(timetable)
+print(len(timetable))
+
+write(timetable)
+

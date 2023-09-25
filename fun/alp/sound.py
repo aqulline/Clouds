@@ -1,11 +1,45 @@
-"""from pygame import mixer
+import json
 
 
-mixer.init(44100, -16, 2, 512, None, 5)
-mixer.music.load("/home/alpha/Music/Elton John - Sacrifice (Lyrics) &#x1F3B5;.mp3", "")
-mixer.music.play()
-"""
+def load():
+    with open("/home/alpha/PycharmProjects/Clouds/time.json", "r") as file:
+        initial_data = json.load(file)
+    return initial_data
 
-invoice_amount = 100
-paid = 50
-perc = int((paid / invoice_amount) * 100)
+
+data = load()
+
+keys = data.keys()
+
+days = {}
+
+for u in keys:
+    datas = data[u]
+    dayy = datas.values()
+    i = [i for i in dayy]
+    day = i[0]["day"]
+    timin = i[0]["time_in"]
+    vnue = i[0]["venue"]
+
+    if day not in days:
+        days[day] = {}
+
+    days[day][timin] = {
+        "venue": vnue,
+        "program": u,
+        "modules": i[0]["module"]
+    }
+
+# print(days)
+
+for k in days.keys():
+    data = days[k]
+    f = [l for l in data]
+    ss = [data[d] for d in f]
+    o = "program"
+    for o in ss:
+        print(o)
+        """
+        tunatakiwa tuwe na file ambalo lina save 
+        izo module kwenye preogram usika
+        """
