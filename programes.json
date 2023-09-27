@@ -17,9 +17,6 @@
     "BCAELT": {
         "size": "20"
     },
-    "BCAELT(20), BTAEE": {
-        "size": "30"
-    },
     "BCAME": {
         "size": "25"
     },
@@ -40,9 +37,6 @@
     },
     "BCICT": {
         "size": "158"
-    },
-    "BCLIS, BCRAIM": {
-        "size": "50"
     },
     "BCLTM STREAM A": {
         "size": "220"
@@ -71,9 +65,6 @@
     "BEMIT": {
         "size": "50"
     },
-    "BEMIT(50), DCIT": {
-        "size": "75"
-    },
     "BHRM": {
         "size": "350"
     },
@@ -101,11 +92,23 @@
     "BRIDGE COURSE HDME": {
         "size": "150"
     },
+    "BRIDGE COURSE HDNMAR": {
+        "size": "120"
+    },
+    "BRRTLM STREAM A": {
+        "size": "100"
+    },
+    "BRRTLM STREAM B": {
+        "size": "99"
+    },
+    "BSPLM STREAM A": {
+        "size": "120"
+    },
+    "BSPLM STREAM B": {
+        "size": "70"
+    },
     "BTAEE": {
         "size": "30"
-    },
-    "BTAEE (30), BTPOGE": {
-        "size": "20"
     },
     "BCTSE": {
         "size": "30"
@@ -118,12 +121,6 @@
     },
     "CAEE": {
         "size": "16"
-    },
-    "CAEE (16), CTSE": {
-        "size": "23"
-    },
-    "CAME": {
-        "size": "20"
     },
     "CATF": {
         "size": "70"
@@ -149,9 +146,6 @@
     "CLIS": {
         "size": "4"
     },
-    "CRAS (61), CLIS": {
-        "size": "4"
-    },
     "CLTM - STREAM A": {
         "size": "240"
     },
@@ -167,9 +161,6 @@
     "CPWOGE": {
         "size": "13"
     },
-    "CRAS": {
-        "size": "61"
-    },
     "CRTLO": {
         "size": "106"
     },
@@ -184,9 +175,6 @@
     },
     "DAE": {
         "size": "10"
-    },
-    "DAE(10), DME": {
-        "size": "44"
     },
     "DAEE": {
         "size": "6"
@@ -206,20 +194,11 @@
     "DEE": {
         "size": "17"
     },
-    "DEE(17), DTEE": {
-        "size": "6"
-    },
     "DFCF": {
         "size": "200"
     },
     "DHRM": {
         "size": "67"
-    },
-    "DLIS": {
-        "size": "4"
-    },
-    "DRAIM(20), DLIS": {
-        "size": "4"
     },
     "DLTM STREAM A": {
         "size": "200"
@@ -235,9 +214,6 @@
     },
     "DPLM": {
         "size": "140"
-    },
-    "DRAIM": {
-        "size": "20"
     },
     "DRTLO": {
         "size": "61"
@@ -259,9 +235,6 @@
     },
     "HDAME II": {
         "size": "21"
-    },
-    "HDAME III": {
-        "size": "32"
     },
     "HDATF I": {
         "size": "262"

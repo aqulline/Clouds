@@ -46,7 +46,7 @@ with open('export.csv', newline='') as csvfile:
 
         if len(row) == 1:
             programo = row[0].strip()
-            #modul = 0
+            # modul = 0
             pro_lit = []
             if get_pro(programo):
                 if "(" in programo and "V" not in programo and programo[0] != "L" and "CLASS" not in programo and \
@@ -64,7 +64,7 @@ with open('export.csv', newline='') as csvfile:
                         if programe not in datax:
                             datax[programe] = {}
                         modul += 1
-                        #print(modul)
+                        # print(modul)
                         datax[programe][f"module{modul}"] = i
                         # print(datax[programe][f"module{modul}"])
 

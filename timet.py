@@ -7,6 +7,7 @@ def write(data):
         initial_data = json.dumps(data, indent=4)
         file.write(initial_data)
 
+
 def randcc(day_t):
     chic = random.choice(day_t)
     length = day_t.__len__()
@@ -86,14 +87,14 @@ for i in program:
             venue_time = randcc(venue_r)
             venue = get_venue(venue_time)
             time_in = venue_time
-            #print(f"{program}:{modules}")
+            # print(f"{program}:{modules}")
             time_out = day_venu_time[day_venu_time.index(day_t)][day_t.index(venue_r)][venue_r.index(venue_time) + 2]
             time_still = day_venu_time[day_venu_time.index(day_t)][day_t.index(venue_r)][venue_r.index(venue_time) + 1]
             day_venu_time[day_venu_time.index(day_t)][day_t.index(venue_r)].remove(time_in)
             day_venu_time[day_venu_time.index(day_t)][day_t.index(venue_r)].remove(time_out)
             day_venu_time[day_venu_time.index(day_t)][day_t.index(venue_r)].remove(time_still)
-            #dictiom = {program: {modules: {"venue": venue, "day": day, "time_in": time_in, "time_out": time_out}}}
-            #print(dictiom)
+            # dictiom = {program: {modules: {"venue": venue, "day": day, "time_in": time_in, "time_out": time_out}}}
+            # print(dictiom)
             if program not in timetable:
                 timetable[program] = {}
 
@@ -102,12 +103,11 @@ for i in program:
                 "day": day,
                 "time_in": time_in,
                 "time_out": time_out,
-                "module":modules,
+                "module": modules,
                 "program": program,
             }
-            #print(timetable[program][modules])
+            # print(timetable[program][modules])
 print(timetable)
 print(len(timetable))
 
 write(timetable)
-

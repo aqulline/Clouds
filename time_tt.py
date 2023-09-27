@@ -49,3 +49,58 @@ for module_name, exams in timetable.items():
     for exam in exams:
         print(f"Day Exam: {exam['day_exam']}, Venue: {exam['venue']}, Time Slot: {exam['time_slot']}")
 
+dataz = {
+    "BAE (54)": {
+        "AEU 08103 Engineering Management": {
+            "venue": "vn5",
+            "day": "Wednesday",
+            "time": "15:30-16:00",
+            "week": "w1",
+            "module": "AEU 08103 Engineering Management",
+            "program": "BAE (54)"
+        },
+        "AEU 08101 Automobile Design & Development": {
+            "venue": "vn25",
+            "day": "Tuesday",
+            "time": "17:30-18:30",
+            "week": "w2",
+            "module": "AEU 08101 Automobile Design & Development",
+            "program": "BAE (54)"
+        },
+        "AEU 08104 Environmental & Safety Engineering": {
+            "venue": "vn5",
+            "day": "Monday",
+            "time": "08:30-09:30",
+            "week": "w1",
+            "module": "AEU 08104 Environmental & Safety Engineering",
+            "program": "BAE (54)"
+        },
+        "AEU 08102 Engine Management": {
+            "venue": "vn18",
+            "day": "Tuesday",
+            "time": "08:00-08:30",
+            "week": "w2",
+            "module": "AEU 08102 Engine Management",
+            "program": "BAE (54)"
+        }
+    },
+    "BAME (20)": {
+        "GSU 08101V Research Methodology": {
+            "venue": "vn24",
+            "day": "Wednesday",
+            "time": "08:00-08:30",
+            "week": "w2",
+            "module": "GSU 08101V Research Methodology",
+            "program": "BAME (20)"
+        }
+    },
+    "BATF STREAM A (200)": {
+        "BAU 08101 Transport Costing and Finance\"": {
+            "venue": "vn3",
+            "day": "Friday",
+            "time": "11:30-12:30",
+            "week": "w2",
+            "module": "BAU 08101 Transport Costing and Finance\"",
+            "program": "BATF STREAM A (200)"
+        }}
+    }
