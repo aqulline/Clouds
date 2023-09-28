@@ -1,7 +1,9 @@
 from prettytable import PrettyTable
 import json
 from colorama import Fore, Style
-#import trued
+import trued
+import toview
+
 
 def load(name):
     with open(name, "r") as file:

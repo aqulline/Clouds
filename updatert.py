@@ -114,10 +114,8 @@ def load(name):
 vnue = load("venuea120.json")
 
 
-data = load(
-    "/home/alpha/Documents/Baki.Hanma.SEASON.02.S02.PART.1.DUAL-AUDIO.JPN-ENG.720p.10bit.WEBRip.2CH.x265.HEVC-PSA/ble.json")
+data = load("ble.json")
 tl = len(mph)
-print(tl)
 for i in data:
     for k in data[i]:
         for j in data[i][k]:
@@ -159,12 +157,10 @@ for i in data:
             if int(size) - int(vsize) > 10 and int(size) >= 200:
 
                 if prog not in already:
-                    print(prog, vname)
                     vnl = random.choice(mph)
                     vnee = random.choice(vnl)
 
                     mph[mph.index(vnl)].remove(vnee)
-                    print(vnee, len(mph[mph.index(vnl)]))
 
                     w, v, d, t = vnee.strip().split(";")[0], vnee.strip().split(";")[1], vnee.strip().split(";")[2], \
                     vnee.strip().split(";")[3]

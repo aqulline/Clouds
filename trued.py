@@ -135,7 +135,6 @@ for i in venue_day_time_a120:
     if "MPH" in i[0]:
         mph.append(i)
 
-print(mph)
 
 for i in range(len(programmes)):
     pro = programmes[i]
@@ -278,5 +277,6 @@ for i in range(len(programmes)):
             }
 
 #print(timetable)
-#write(timetable)
+write(timetable)
+import updatert
 
