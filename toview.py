@@ -6,17 +6,18 @@ def load(name):
         initial_data = json.load(file)
     return initial_data
 
+
 def write(data):
     with open("timetable_table.html", "w") as file:
-        #initial_data = json.dumps(data, indent=4)
+        # initial_data = json.dumps(data, indent=4)
         file.write(data)
+
 
 # Sample JSON data
 data = load("ble.json")
 
 # Start generating the HTML table
 html_table = '<table>'
-
 
 # Iterate through the JSON data to populate the table rows
 for program, modules in data.items():

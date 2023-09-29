@@ -14,11 +14,10 @@ def size_bl(c_s, s_s, data, vn, w_v_d_t, rnd_venue_list):
             c_s = vn[vne]["size"]
             print(prev, "here", w_v_d_t)
             print(c_s, s_s)
-            #sleep(1)
+            # sleep(1)
         else:
             pass
     return [w_v_d_t, rnd_venue_list]
-
 
 
 def get_oode(name):
@@ -102,7 +101,7 @@ modules_lits = [[modules[i][j].strip() for j in modules[i]]
                 for i in modules]
 
 weeks = ["w1",
-         "w2"]
+         "w2", "w3"]
 days = ['Monday', 'Tuesday',
         'Wednesday', 'Thursday', 'Friday', "Saturday"]
 
@@ -135,7 +134,20 @@ for i in venue_day_time_a120:
     if "MPH" in i[0]:
         mph.append(i)
 
+temp_listb50 = []
+temp_lista50 = []
+temp_listb120 = []
+temp_lista120 = []
 
+
+def append(list, name):
+    list.clear()
+
+
+dog = ""
+cat = ""
+cow = ""
+pig = ""
 for i in range(len(programmes)):
     pro = programmes[i]
     modd = modules_lits[i]
@@ -145,8 +157,17 @@ for i in range(len(programmes)):
         Psize = get_size(pro)
 
         if int(Psize) < 40:
+            prev_index = int
             data = venue_day_time_b50
             rnd_venue_list = random.choice(data)
+            current_index = data.index(rnd_venue_list)
+            current_pos = rnd_venue_list[0].strip().split(";")[2]
+            while dog == current_pos:
+                print(dog, current_pos)
+                rnd_venue_list = random.choice(data)
+                current_pos = rnd_venue_list[0].strip().split(";")[2]
+                # sleep(5)
+            dog = rnd_venue_list[0].strip().split(";")[2]
             w_v_d_t = random.choice(rnd_venue_list)
             Eweek = w_v_d_t.strip().split(";")[0]
             Evenue = w_v_d_t.strip().split(";")[1]
@@ -154,7 +175,10 @@ for i in range(len(programmes)):
             Etime = w_v_d_t.strip().split(";")[3]
             Svenue = vnb50[Evenue]["size"]
             removed_day = data[data.index(rnd_venue_list)][rnd_venue_list.index(w_v_d_t)]
+            remove_list = data[data.index(rnd_venue_list)]
+            temp_listb50.append(data.index(rnd_venue_list))
             data[data.index(rnd_venue_list)].remove(removed_day)
+            # data.remove(remove_list)
             code_init = get_oode(modle)
             teacherr = get_teacher(it_teacher, Eweek, Etime, Eday, Evenue)
             Eteacher = teacherr.strip().split(";")[0]
@@ -177,6 +201,14 @@ for i in range(len(programmes)):
         elif int(Psize) <= 70:
             data = venue_day_time_a50
             rnd_venue_list = random.choice(data)
+            current_index = data.index(rnd_venue_list)
+            current_pos = rnd_venue_list[0].strip().split(";")[2]
+            while cat == current_pos:
+                print(cat, current_pos)
+                rnd_venue_list = random.choice(data)
+                current_pos = rnd_venue_list[0].strip().split(";")[2]
+                # sleep(5)
+            cat = rnd_venue_list[0].strip().split(";")[2]
             w_v_d_t = random.choice(rnd_venue_list)
             Eweek = w_v_d_t.strip().split(";")[0]
             Evenue = w_v_d_t.strip().split(";")[1]
@@ -184,7 +216,10 @@ for i in range(len(programmes)):
             Etime = w_v_d_t.strip().split(";")[3]
             Svenue = vna50[Evenue]["size"]
             removed_day = data[data.index(rnd_venue_list)][rnd_venue_list.index(w_v_d_t)]
+            remove_list = data[data.index(rnd_venue_list)]
+            temp_lista50.append(data.index(rnd_venue_list))
             data[data.index(rnd_venue_list)].remove(removed_day)
+            # data.remove(remove_list)
             code_init = get_oode(modle)
             teacherr = get_teacher(it_teacher, Eweek, Etime, Eday, Evenue)
             Eteacher = teacherr.strip().split(";")[0]
@@ -207,6 +242,14 @@ for i in range(len(programmes)):
         elif int(Psize) <= 135:
             data = venue_day_time_b120
             rnd_venue_list = random.choice(data)
+            current_index = data.index(rnd_venue_list)
+            current_pos = rnd_venue_list[0].strip().split(";")[2]
+            while cow == current_pos:
+                print(cow, current_pos)
+                rnd_venue_list = random.choice(data)
+                current_pos = rnd_venue_list[0].strip().split(";")[2]
+                # sleep(5)
+            cow = rnd_venue_list[0].strip().split(";")[2]
             w_v_d_t = random.choice(rnd_venue_list)
             Eweek = w_v_d_t.strip().split(";")[0]
             Evenue = w_v_d_t.strip().split(";")[1]
@@ -214,7 +257,10 @@ for i in range(len(programmes)):
             Etime = w_v_d_t.strip().split(";")[3]
             Svenue = vnb120[Evenue]["size"]
             removed_day = data[data.index(rnd_venue_list)][rnd_venue_list.index(w_v_d_t)]
+            remove_list = data[data.index(rnd_venue_list)]
+            temp_listb120.append(data.index(rnd_venue_list))
             data[data.index(rnd_venue_list)].remove(removed_day)
+            # data.remove(remove_list)
             code_init = get_oode(modle)
             teacherr = get_teacher(it_teacher, Eweek, Etime, Eday, Evenue)
             Eteacher = teacherr.strip().split(";")[0]
@@ -237,25 +283,24 @@ for i in range(len(programmes)):
         elif int(Psize) > 120:
             data = venue_day_time_a120
             rnd_venue_list = random.choice(data)
+            current_index = data.index(rnd_venue_list)
+            current_pos = rnd_venue_list[0].strip().split(";")[2]
+            while pig == current_pos:
+                print(pig, current_pos)
+                rnd_venue_list = random.choice(data)
+                current_pos = rnd_venue_list[0].strip().split(";")[2]
+                # sleep(5)
+            pig = rnd_venue_list[0].strip().split(";")[2]
             w_v_d_t = random.choice(rnd_venue_list)
             Eweek = w_v_d_t.strip().split(";")[0]
             Evenue = w_v_d_t.strip().split(";")[1]
             Eday = w_v_d_t.strip().split(";")[2]
             Etime = w_v_d_t.strip().split(";")[3]
             Svenue = vna120[Evenue]["size"]
-
-            """if int(Psize) - int(Svenue) > 15:
-                sas = size_bl(int(Svenue), int(Psize), data, vna120, w_v_d_t, rnd_venue_list)
-                w_v_d_t, rnd_venue_list = sas[0], sas[1]
-
-                Eweek = w_v_d_t.strip().split(";")[0]
-                Evenue = w_v_d_t.strip().split(";")[1]
-                Eday = w_v_d_t.strip().split(";")[2]
-                Etime = w_v_d_t.strip().split(";")[3]
-                Svenue = vna120[Evenue]["size"]"""
-
             removed_day = data[data.index(rnd_venue_list)][rnd_venue_list.index(w_v_d_t)]
+            temp_lista120.append(data.index(rnd_venue_list))
             data[data.index(rnd_venue_list)].remove(removed_day)
+            # data.remove(remove_list)
             code_init = get_oode(modle)
             teacherr = get_teacher(it_teacher, Eweek, Etime, Eday, Evenue)
             Eteacher = teacherr.strip().split(";")[0]
@@ -275,8 +320,15 @@ for i in range(len(programmes)):
                 "students_size": Psize,
                 "venue_size": Svenue
             }
+    append(temp_listb50, "b50")
+    append(temp_lista50, "a50")
+    append(temp_lista120, "a120")
+    append(temp_listb120, "b120")
+    dog = ""
+    cat = ""
+    cow = ""
+    pig = ""
 
-#print(timetable)
+# print(timetable)
 write(timetable)
 import updatert
-
